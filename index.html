@@ -91,7 +91,7 @@ function renderDeadline(){
  banner.innerHTML=upcoming.length?'<div class="notice-heading">📌 이틀 뒤 수행평가 '+upcoming.length+'건</div>'+upcoming.map(e=>'<div class="notice-item"><b>'+esc(e.title)+'</b><span class="date">'+esc(e.date)+'</span>'+(e.note?'<div>'+esc(e.note)+'</div>':'')+'</div>').join(''):'';
 }
 async function loadMeal(){
- const box=$('mealContent'),when=$('mealDate'),cfg=(window.CLASSROOM_CONFIG||{}).meal||{};
+ const box=$('mealContent'),when=$('mealDate'),cfg={officeCode:'C10',schoolCode:'C100000493',...((window.CLASSROOM_CONFIG||{}).meal||{})};
  const now=new Date(),stamp=[now.getFullYear(),String(now.getMonth()+1).padStart(2,'0'),String(now.getDate()).padStart(2,'0')].join('');when.textContent=(now.getMonth()+1)+'월 '+now.getDate()+'일';
  if(!cfg.officeCode||!cfg.schoolCode){box.innerHTML='학교 연결 설정 전이에요. <b>config.js</b>에 학교 코드가 입력되면 급식이 표시됩니다.';return}
  box.textContent='오늘의 급식을 확인하는 중…';
